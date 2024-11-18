@@ -27,25 +27,34 @@ This helped in identifying any initial issues with the data, such as imbalances 
 After visualizing the data, I performed the following preprocessing steps:
 
 One-Hot Encoding: Categorical features were transformed into numerical values using one-hot encoding to ensure that models could process them effectively.
+
 Handling Outliers: Outliers were detected and handled by capping, where extreme values beyond a certain threshold were set to the threshold values.
-Removing Unnecessary Columns: I dropped columns that were irrelevant to the prediction task, such as identifiers or features that do not add predictive value. Additionally, columns with high correlation (multicollinearity) were removed to improve model performance and reduce overfitting.
+
+Removing Unnecessary Columns: I dropped columns that were irrelevant to the prediction task 
+
 3. Data Splitting and Handling Imbalanced Dataset:
+   
 The dataset was split into training and testing sets using train_test_split from scikit-learn.
 To address the class imbalance (with far fewer fraudulent transactions than non-fraudulent ones), I applied different resampling techniques:
 SMOTE (Synthetic Minority Over-sampling Technique) was applied to some models to generate synthetic examples of the minority class (fraudulent transactions).
 Random Oversampling was used for other models to duplicate examples from the minority class to balance the class distribution.
-4. Model Training:
+
+5. Model Training:
 I trained the following models and evaluated their performance:
 
 Traditional Machine Learning Models:
 Random Forest: A powerful ensemble method that aggregates multiple decision trees to improve prediction accuracy and robustness.
+
 Decision Tree: A simpler model that uses a tree-like graph of decisions, easy to interpret but prone to overfitting.
+
 Both models were evaluated using accuracy, precision, recall, and F1-score to assess their performance in detecting fraudulent transactions.
 
-Deep Learning Models:
+Deep Learning Models: For deep learning models i add additional preprocessing step (Normalization)
+
 I also applied Deep Learning techniques, particularly Graph Neural Networks (GNNs), to handle the graph-based nature of some relationships in the data:
 
 GraphSAGE (Graph Sample and Aggregation): A GNN model that leverages neighborhood sampling and aggregation, useful for graphs where node features vary in importance.
+
 GCN (Graph Convolutional Network): A widely used GNN architecture that applies graph convolutions to capture relationships in graph data.
 Both GNN models were trained using:
 
@@ -62,7 +71,3 @@ Precision: The percentage of true fraud predictions out of all predicted fraud c
 Recall: The percentage of actual fraud cases correctly identified by the model.
 F1-Score: The harmonic mean of precision and recall, providing a balanced evaluation for imbalanced datasets.
 ROC-AUC: The area under the Receiver Operating Characteristic curve, indicating the model's ability to discriminate between fraudulent and non-fraudulent transactions.
-Results:
-The Random Forest and Decision Tree models provided strong results in terms of accuracy but showed varying performance in precision and recall due to class imbalance.
-The Graph Neural Networks (GraphSAGE and GCN), being more advanced models, demonstrated strong performance, particularly in capturing complex relationships between transactions.
-The MLP also performed well but was outperformed by the GNN models in capturing non-linear patterns in the data.
